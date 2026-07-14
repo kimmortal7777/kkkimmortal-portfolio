@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { Target, ShieldAlert, Award } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface AboutProps {
   darkMode: boolean;
@@ -16,7 +17,13 @@ export const About: React.FC<AboutProps> = ({ darkMode }) => {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
         
         {/* Left Column - Biography */}
-        <div className="md:col-span-5">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="md:col-span-5"
+        >
           <span className={`font-mono text-[10px] tracking-[0.25em] uppercase block mb-3 ${
             darkMode ? 'text-white' : 'text-slate-900'
           }`}>
@@ -37,10 +44,16 @@ export const About: React.FC<AboutProps> = ({ darkMode }) => {
           }`}>
             Whether designing competitive bowls for skate games or classic arcade arenas, I focus on spatial composition and pure building craft to create worlds players love spending time in.
           </p>
-        </div>
+        </motion.div>
 
         {/* Right Column - Improvement Goals */}
-        <div className="md:col-span-7 flex flex-col justify-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="md:col-span-7 flex flex-col justify-center"
+        >
           <div className={`${darkMode ? 'animated-glow-dark' : 'animated-glow-light'}`}>
             <div className={`p-6 sm:p-8 rounded-3xl border theme-transition ${
               darkMode ? 'bg-zinc-950 border-white/10' : 'bg-slate-50 border-slate-200'
@@ -88,7 +101,7 @@ export const About: React.FC<AboutProps> = ({ darkMode }) => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

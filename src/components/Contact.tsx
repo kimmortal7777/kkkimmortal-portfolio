@@ -6,6 +6,7 @@
 import React, { useState } from 'react';
 import { Gamepad2, Copy, Check, MessageSquare, ArrowRight } from 'lucide-react';
 import { ROBLOX_PROFILE_LINK, CURRENT_GAME_LINK, DISCORD_USERNAME } from '../data';
+import { motion } from 'motion/react';
 
 interface ContactProps {
   darkMode: boolean;
@@ -25,7 +26,13 @@ export const Contact: React.FC<ContactProps> = ({ darkMode }) => {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
         
         {/* Left Column - Contact Intro */}
-        <div className="md:col-span-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="md:col-span-6"
+        >
           <span className={`font-mono text-[10px] tracking-[0.25em] uppercase block mb-3 ${
             darkMode ? 'text-white/60' : 'text-slate-500'
           }`}>
@@ -52,10 +59,16 @@ export const Contact: React.FC<ContactProps> = ({ darkMode }) => {
               STATUS: COMMISSION OPEN
             </span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Column - Beautiful Minimal Direct Options */}
-        <div className="md:col-span-6 space-y-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="md:col-span-6 space-y-4"
+        >
           
           {/* Discord Button */}
           <div className={`p-5 rounded-3xl border theme-transition flex items-center justify-between ${
@@ -162,7 +175,7 @@ export const Contact: React.FC<ContactProps> = ({ darkMode }) => {
             <ArrowRight className="h-4 w-4 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
           </a>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>

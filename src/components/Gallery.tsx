@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Eye, X, ExternalLink } from 'lucide-react';
+import { Eye, X } from 'lucide-react';
 import { Project } from '../types';
 import { PROJECTS } from '../data';
 
@@ -24,7 +24,13 @@ export const Gallery: React.FC<GalleryProps> = ({ darkMode }) => {
 
   return (
     <section id="gallery" className="py-24 px-6 max-w-5xl mx-auto">
-      <div className="mb-16">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, margin: "-100px" }}
+        transition={{ duration: 0.5 }}
+        className="mb-16"
+      >
         <span className={`font-mono text-[10px] tracking-[0.25em] uppercase block mb-3 ${
           darkMode ? 'text-white/60' : 'text-slate-500'
         }`}>
@@ -56,7 +62,7 @@ export const Gallery: React.FC<GalleryProps> = ({ darkMode }) => {
             </button>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Grid of clean, highly rounded cards with back-glow effect */}
       <motion.div 
@@ -107,17 +113,15 @@ export const Gallery: React.FC<GalleryProps> = ({ darkMode }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm cursor-zoom-out"
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              initial={{ scale: 0.95, y: 20 }}
+              initial={{ scale: 0.95, y: 10 }}
               animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 20 }}
-              transition={{ type: "spring", duration: 0.5 }}
-              className={`relative max-w-4xl w-full rounded-3xl overflow-hidden shadow-2xl border ${
-                darkMode ? 'bg-zinc-950 border-white/10' : 'bg-white border-slate-200'
-              }`}
+              exit={{ scale: 0.95, y: 10 }}
+              transition={{ type: "spring", duration: 0.4 }}
+              className="relative max-w-5xl max-h-[90vh] w-full h-full flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
@@ -128,63 +132,19 @@ export const Gallery: React.FC<GalleryProps> = ({ darkMode }) => {
                 <X className="h-4 w-4" />
               </button>
 
-              <div className="grid grid-cols-1 md:grid-cols-3">
-                {/* Large Project Image */}
-                <div className="md:col-span-2 aspect-[4/3] md:aspect-auto md:h-[500px] bg-black">
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                {/* Minimalist details */}
-                <div className="p-6 sm:p-8 flex flex-col justify-between h-full md:h-[500px]">
-                  <div>
-                    <span className={`text-[9px] font-mono tracking-widest uppercase block mb-1 ${
-                      darkMode ? 'text-white/60' : 'text-slate-500'
-                    }`}>
-                      {selectedProject.category === 'current' ? 'ACTIVE ROBLOX WORK' : 'ARCHIVED BUILD'}
-                    </span>
-                    <h3 className={`font-display text-xl font-black tracking-tight mb-4 uppercase ${
-                      darkMode ? 'text-white' : 'text-slate-900'
-                    }`}>
-                      {selectedProject.title}
-                    </h3>
-                    <p className={`text-xs leading-relaxed ${
-                      darkMode ? 'text-white/60' : 'text-slate-500'
-                    }`}>
-                      All structures are built with visual composition and player navigation in mind, optimized directly in Roblox Studio.
-                    </p>
-                  </div>
-
-                  <div className="mt-8 space-y-3">
-                    <a
-                      href={selectedProject.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`w-full text-center font-mono font-bold text-[10px] py-3.5 rounded-full tracking-widest uppercase transition-all flex items-center justify-center gap-2 cursor-pointer ${
-                        darkMode
-                          ? 'bg-white hover:bg-zinc-200 text-black'
-                          : 'bg-slate-950 hover:bg-slate-800 text-white'
-                      }`}
-                    >
-                      VISIT PLACE ON ROBLOX <ExternalLink className="h-3 w-3" />
-                    </a>
-                    
-                    <button
-                      onClick={() => setSelectedProject(null)}
-                      className={`w-full py-3.5 rounded-full text-[10px] font-mono font-bold tracking-widest uppercase transition-colors cursor-pointer ${
-                        darkMode 
-                          ? 'bg-white/5 hover:bg-white/10 text-white/80' 
-                          : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
-                      }`}
-                    >
-                      CLOSE VIEW
-                    </button>
-                  </div>
-                </div>
+              {/* Only the image with a subtle border/glow */}
+              <div 
+                className={`relative rounded-3xl overflow-hidden border max-h-[85vh] max-w-full shadow-2xl cursor-zoom-out ${
+                  darkMode ? 'bg-zinc-950 border-white/10' : 'bg-white border-slate-200'
+                }`}
+                onClick={() => setSelectedProject(null)}
+              >
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  referrerPolicy="no-referrer"
+                  className="max-h-[85vh] max-w-full w-auto h-auto object-contain"
+                />
               </div>
             </motion.div>
           </motion.div>
