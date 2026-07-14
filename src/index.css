@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-neon-blue: #ffffff;
+  --color-neon-blue-hover: #e5e5e5;
+  --color-neon-blue-dim: rgba(255, 255, 255, 0.1);
+  --color-dark-bg: #000000;
+}
+
+/* Custom minimal background styling */
+.studs-bg-dark {
+  background-color: #030303;
+}
+
+.studs-bg-light {
+  background-color: #fafafa;
+}
+
+/* Theme transition rule */
+.theme-transition {
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s ease;
+}
+
+/* Custom glow text effects matching Monochrome theme */
+.glow-white {
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.3), 0 0 32px rgba(255, 255, 255, 0.1);
+}
+
+.glow-box-white {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+/* Picture glowing light background effects */
+@keyframes slow-glow {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+.animated-glow-dark {
+  position: relative;
+}
+.animated-glow-dark::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 40px;
+  filter: blur(15px);
+  animation: slow-glow 6s ease-in-out infinite;
+  transition: opacity 0.4s ease, transform 0.4s ease, background 0.4s ease;
+}
+.animated-glow-dark:hover::before {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 70%);
+  transform: scale(1.08);
+}
+
+.animated-glow-light {
+  position: relative;
+}
+.animated-glow-light::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 40px;
+  filter: blur(15px);
+  animation: slow-glow 6s ease-in-out infinite;
+  transition: opacity 0.4s ease, transform 0.4s ease, background 0.4s ease;
+}
+.animated-glow-light:hover::before {
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+  transform: scale(1.08);
+}
+
+/* Hide scrollbars but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
