@@ -37,7 +37,7 @@ export const About: React.FC<AboutProps> = ({ darkMode }) => {
           <p className={`text-xs leading-relaxed mb-6 ${
             darkMode ? 'text-white/60' : 'text-slate-500'
           }`}>
-            I am a dedicated Roblox map builder specializing in clean, highly playable environment layouts and smooth structural geometry. I build maps designed entirely around player movement and flawless collision paths.
+            I am a dedicated Roblox map builder specializing in clean, highly playable environment layouts and smooth structural geometry. I am currently focused on bigger stud and low poly maps, designing worlds optimized for smooth player movement and flawless collision paths.
           </p>
           <p className={`text-xs leading-relaxed ${
             darkMode ? 'text-white/60' : 'text-slate-500'
@@ -96,6 +96,17 @@ export const About: React.FC<AboutProps> = ({ darkMode }) => {
                   </h5>
                   <p className={`text-xs leading-relaxed ${darkMode ? 'text-white/60' : 'text-slate-500'}`}>
                     Studying architectural patterns to design larger, more cohesive worlds that capture the imagination of players without feeling empty.
+                  </p>
+                </div>
+
+                <div>
+                  <h5 className={`font-display text-sm font-bold mb-1.5 ${
+                    darkMode ? 'text-white' : 'text-slate-800'
+                  }`}>
+                    3D Modeling in Blender
+                  </h5>
+                  <p className={`text-xs leading-relaxed ${darkMode ? 'text-white/60' : 'text-slate-500'}`}>
+                    Learning custom 3D asset creation and mesh modeling in Blender to design highly unique structures and props beyond default studio geometry.
                   </p>
                 </div>
               </div>
